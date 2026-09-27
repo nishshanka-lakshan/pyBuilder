@@ -1156,7 +1156,7 @@
 
 
 
-                <label>Isosurface cutoff</label>
+                <label>Isovalue</label>
 
 
 
@@ -1164,7 +1164,7 @@
 
 
 
-                       value="0.020" min="0.0001" max="0.500" step="0.0001" />
+                       value="0.020" min="0.000001" max="0.500" step="0.0001" />
 
 
 
@@ -1173,13 +1173,6 @@
                 <button type="button" id="orbitalPrev" title="Previous orbital">◀ Prev</button>
                 <button type="button" id="orbitalNext" title="Next orbital">▶ Next</button>
                 <label style="display:inline-flex;align-items:center;gap:6px;margin:0 0 0 8px"><input type="checkbox" id="showOrbitalAtoms" checked> Atoms and bonds</label>
-              </div>
-              <div style="grid-column:1/-1"><label for="orbitalIsoSlider">Isosurface level</label>
-                <input id="orbitalIsoSlider" type="range" min="0.001" max="0.150" step="0.001" value="0.020" style="width:100%" />
-              </div>
-              <div style="grid-column:1/-1"><label for="orbitalIsoScale">Molden isovalue scale (raw cube / displayed)</label>
-                <input id="orbitalIsoScale" type="number" min="0.000001" max="100" step="0.001" value="0.15" />
-                <div class="mini-note">For Molden orbitals only. Based on the supplied orbital 1 comparison: displayed 0.020 uses cube cutoff 0.003. Adjust this factor if needed. CUBE exports retain their original values.</div>
               </div>
               <div><label>Grid detail (X × Y × Z)</label>
                 <div class="grid-dimensions">
@@ -3330,13 +3323,11 @@ async function loadEmbeddedOrbital(number){
 }
 
 const BOHR_TO_ANGSTROM = 0.529177210903;
-const GAMMA_HALF = [0.5,0.75,1.875,6.5625].map(x=>x*Math.sqrt(Math.PI));
+// Follow VibeMol's Molden grid convention: use primitive coefficients and
+// Cartesian/spherical angular polynomials directly, without an extra AO norm.
 const ANGULAR_CONSTANTS = {
-  s:1/Math.sqrt(4*Math.PI),
-  p:Math.sqrt(3/(4*Math.PI)),
-  d0:Math.sqrt(5/(16*Math.PI)),d1:Math.sqrt(15/(4*Math.PI)),d2:Math.sqrt(15/(16*Math.PI)),
-  f0:Math.sqrt(7/(16*Math.PI)),f1:Math.sqrt(21/(32*Math.PI)),
-  f2:Math.sqrt(105/(16*Math.PI)),f2m:Math.sqrt(105/(4*Math.PI)),f3:Math.sqrt(35/(32*Math.PI))
+  s:1, p:1, d0:1, d1:1, d2:1,
+  f0:1, f1:1, f2:1, f2m:1, f3:1
 };
 function parseMoldenForGrid(text){
   const section=(name)=>{
@@ -3370,8 +3361,7 @@ function parseMoldenForGrid(text){
       const a=Number(q?.[0]?.replace(/[dD]/g,"E"));
       const c=Number(q?.[1]?.replace(/[dD]/g,"E"))*scale;
       if(!(a>0) || !Number.isFinite(c))throw new Error("Invalid Gaussian primitive");
-      const norm=Math.sqrt(2*Math.pow(2*a,l+1.5)/GAMMA_HALF[l]);
-      primitives.push({a,c:c*norm});
+      primitives.push({a,c});
     }
     shells.push({atom:atoms[atomIndex],l,primitives,offset:0});
     i++;
@@ -5835,8 +5825,7 @@ function renderCube(){
   const negativeColor=document.getElementById("orbitalNegativeColor").value;
   const posColor = flip ? negativeColor : positiveColor;
   const negColor = flip ? positiveColor : negativeColor;
-  const scaleInput=Number(document.getElementById("orbitalIsoScale").value);
-  const rawCutoff=settings.cutoff*(cubeData.fromMolden && Number.isFinite(scaleInput) && scaleInput>0 ? scaleInput : 1);
+  const rawCutoff=settings.cutoff;
   const positiveShape = viewer.addVolumetricData(cubeData.text, "cube", {
 
     isoval: rawCutoff, color: posColor,
@@ -5861,7 +5850,7 @@ function renderCube(){
   if(animationFixedView)viewer.setView(animationFixedView);
   viewer.render();
 
-  setOrbitalStatus(`Showing ${cubeData.name}. Positive and negative phases: displayed cutoff ${settings.cutoff}, raw cube cutoff ${rawCutoff.toPrecision(5)}.`);
+  setOrbitalStatus(`Showing ${cubeData.name}. Positive and negative phases at isovalues ±${rawCutoff}.`);
 
 }
 
@@ -6161,16 +6150,6 @@ document.getElementById("orbitalPrev").onclick=()=>selectOrbitalOffset(-1);
 document.getElementById("orbitalNext").onclick=()=>selectOrbitalOffset(1);
 document.getElementById("showOrbitalAtoms").onchange=styleOrbitalAtoms;
 document.getElementById("orbitalFlipPhase").onchange=renderCube;
-document.getElementById("orbitalIsoSlider").oninput=e=>{
-  document.getElementById("orbitalCutoff").value=e.target.value;
-  if(cubeData)renderCube();
-};
-document.getElementById("orbitalCutoff").addEventListener("input",e=>{
-  const slider=document.getElementById("orbitalIsoSlider");
-  slider.value=Math.max(Number(slider.min),Math.min(Number(slider.max),Number(e.target.value)||0.0001));
-});
-
-document.getElementById("orbitalIsoScale").addEventListener("change",()=>{if(cubeData)renderCube()});
 document.getElementById("orbitalCutoff").addEventListener(
 
 
