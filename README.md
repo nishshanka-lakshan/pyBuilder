@@ -1,6 +1,6 @@
 # PyBuilder: PySCF input builder and orbital viewer
 
-**[Open PyBuilder](https://htmlpreview.github.io/?https://github.com/nishshanka-lakshan/pyBuilder/blob/main/PyBuilder.html)**
+**[Open PyBuilder](http://127.0.0.1:5500/PyBuilder.html)**
 
 PyBuilder is a browser-based tool for preparing PySCF input scripts from molecular coordinates. It also provides a 3D molecule view and tools for inspecting molecular orbitals from Molden or orbital CUBE files.
 
