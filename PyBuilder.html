@@ -18,17 +18,22 @@
 
 
 
-  <title>PyBuilder</title>
+  <title>BeeMol</title>
 
 
 
   <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
 
-
-
   <script src="https://chemapps.stolaf.edu/jmol/jsmol/JSmol.min.js"></script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
+  <link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&display=swap"
+      rel="stylesheet">
 
   <style>
 
@@ -37,46 +42,25 @@
     :root{
 
 
-
       --bg:#0b1220;
-
-
 
       --panel:#111a2d;
 
-
-
       --panel2:#0f1727;
-
-
 
       --border:#263552;
 
-
-
       --text:#eef4ff;
-
-
 
       --muted:#9fb0cc;
 
-
-
       --accent:#59a8ff;
-
-
 
       --accent2:#78d7b6;
 
-
-
       --danger:#ff7a90;
 
-
-
       --code:#09101d;
-
-
 
     }
 
@@ -100,11 +84,7 @@
 
       background:linear-gradient(160deg,#08111f 0%,#0d1422 45%,#111827 100%);
 
-
-
       color:var(--text);
-
-
 
       min-height:100vh;
 
@@ -136,37 +116,81 @@
 
     }
 
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
 
 
-    .brand{display:flex;gap:12px;align-items:center}
+/* BeeMol logo box */
+.logo{
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:22px;
+
+  background:linear-gradient(
+    135deg,
+    #ffd84d 0%,
+    #f5a623 100%
+  );
+
+  color:#111827;
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 5px 18px rgba(245,166,35,.22);
+}
 
 
+/* BeeMol name */
+.brand h1{
+  margin:0;
 
-    .logo{
+  font-family:"Exo 2", sans-serif;
 
+  font-size:24px;
+  font-weight:800;
 
+  line-height:1;
 
-      width:36px;height:36px;border-radius:10px;
-
-
-
-      display:grid;place-items:center;font-weight:800;
-
-
-
-      background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07111f;
-
+  letter-spacing:.4px;
+}
 
 
-    }
+/* Bee part */
+.brand h1 .bee{
+  color:#ffd84d;
+}
 
 
+/* Mol part */
+.brand h1 .mol{
+  color:#eef4ff;
+}
 
-    .brand h1{font-size:18px;margin:0}
 
+/* Subtitle */
+.brand small{
+  display:block;
 
+  margin-top:4px;
 
-    .brand small{color:var(--muted)}
+  color:var(--muted);
+
+  font-family:"Exo 2", sans-serif;
+
+  font-size:11px;
+  font-weight:500;
+
+  letter-spacing:.35px;
+}
 
 
 
@@ -758,7 +782,7 @@
     #orbitalPropertiesHost>.card-header button.active{background:#1c365e;border-color:#54a7ff;color:#fff}
     #orbitalPropertiesHost>#orbitalAnimation{margin:12px;padding:12px}
     #orbitalPropertiesHost>#orbitalAnimation.hidden,#orbitalPropertiesHost>#orbitalControlsWrap.hidden{display:none}
-    .top-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:min(100%,700px)}
+    .top-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100%,690px);margin-left: auto}
     .top-actions button,.top-actions .file-label{width:100%;height:44px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;white-space:nowrap}
     #orbitalPropertiesHost .vibe-orbital-controls button{flex:1 1 0;min-width:0;height:44px;box-sizing:border-box}
     #orbitalPropertiesHost #orbitalAnimation .row button{flex:1 1 0;height:44px;box-sizing:border-box}
@@ -769,6 +793,41 @@
     #orbitalWorkspace .mode-tabs{margin:0 12px}
     @media(max-width:1050px){#orbitalWorkspace{grid-template-columns:minmax(180px,240px) minmax(300px,1fr)}#orbitalPropertiesHost{grid-column:1/-1}#orbitalWorkspace .orbital-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:660px){#orbitalWorkspace{grid-template-columns:1fr}#orbitalPropertiesHost{grid-column:auto}#orbitalWorkspace #viewerStack{height:460px}#orbitalWorkspace #orbitalListWrap{max-height:260px}}
+
+    main.container.waterbox-active > .right > :not(#waterBoxWorkspace) {
+      display: none !important;
+    }
+
+    main.container.waterbox-active #waterBoxWorkspace .card {
+      margin: 0;
+    }
+
+    main.container.waterbox-active #waterBoxWorkspace label {
+      display: block;
+      margin-top: 6px;
+    }
+
+    main.container.waterbox-active #waterBoxWorkspace input[type="number"] {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    main.container.waterbox-active #waterBoxWorkspace #wbGenerate {
+       width: 100%;
+      margin-top: 8px;
+    }
+
+    main.container.waterbox-active #waterBoxWorkspace .wb-download-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    main.container.waterbox-active #waterBoxWorkspace .wb-download-row button {
+      flex: 1 1 0;
+      min-width: 0;
+      margin: 0;
+    }
 
     /* Molecule setup uses the same scene / canvas / properties arrangement. */
     main.container{grid-template-columns:minmax(245px,290px) minmax(400px,1fr) minmax(330px,410px);align-items:start;gap:12px;padding:12px}
@@ -799,31 +858,21 @@
 
 
 
-    <div class="brand">
+  <div class="brand">
 
+    <div class="logo">🐝</div>
 
+    <div>
 
-      <div class="logo">Ψ</div>
+      <h1>
+        <span class="bee">Bee</span><span class="mol">Mol</span>
+      </h1>
 
-
-
-      <div>
-
-
-
-        <h1>PyBuilder</h1>
-
-
-
-        <small>Visual molecule setup and input generator</small>
-
-
-
-      </div>
-
-
+      <small>Quantum Chemistry Visualization</small>
 
     </div>
+
+  </div>
 
 
 
@@ -831,22 +880,13 @@
 
 
 
-      <label class="file-label" for="moldenFileInput">Open Molden</label>
-      <label class="file-label" for="xyzFile">Open XYZ</label>
-
-
-
-      <input id="xyzFile" type="file" accept=".xyz,.txt" class="hidden" />
-
-
+    <label class="file-label" for="orbitalFileInput"> Open </label>
+    <input id="orbitalFileInput" type="file"
+         accept=".xyz,.molden,.molden.input,.molden.inp,.inp,.txt,.cube,.cub"
+         multiple class="hidden" />
 
       <button id="copyCode">Copy PySCF</button>
-
-
-
       <button id="downloadPy" class="primary">Download .py</button>
-
-
 
     </div>
 
@@ -908,6 +948,7 @@
 
 
           <div id="modeOrbitalsBtn" class="mode-tab">Orbitals</div>
+          <div id="wbOpen" class="mode-tab" role="button" tabindex="0">Water box</div>
 
 
 
@@ -928,8 +969,8 @@
 
 
           <div id="orbitalViewer" class="hidden"></div>
-
-
+          <div id="wbViewer" class="hidden"
+                style="position:absolute;inset:0;width:100%;height:100%;background:#f8fbff"></div>
 
         </div>
 
@@ -1130,8 +1171,6 @@
 
             <div class="orbital-controls">
 
-
-
               <div>
 
 
@@ -1140,7 +1179,7 @@
 
 
 
-                <input id="orbitalNumber" type="number" value="70" min="1" step="1" />
+                <input id="orbitalNumber" type="number" value="1" min="1" step="1" />
 
 
 
@@ -1237,30 +1276,10 @@
 
             <div class="orbital-actions">
 
-
-
-
-              <label class="file-label" for="moldenFileInput">Open Molden</label>
-
-
-
-              <input id="moldenFileInput" type="file" accept=".molden,.molden.input,.molden.inp,.inp,.txt" class="hidden" />
-
-
-
-              <label class="file-label" for="cubeFileInput">Open orbital CUBE</label>
-
-              <input id="cubeFileInput" type="file" accept=".cube,.cub" multiple class="hidden" />
-
-
-
               <button id="orbitalBackgroundBtn" type="button">Background: Dark</button>
               <button id="downloadOrbitalCube" type="button">Download orbital CUBE</button>
 
-
-
             </div>
-
 
 
             <div id="orbitalAnimation" class="card hidden" style="margin-top:12px;padding:12px">
@@ -1381,6 +1400,76 @@
 
     <section class="right">
 
+      <section id="waterBoxWorkspace" class="hidden" style="padding:0">
+      <div class="card" style="padding:16px">
+      <div class="card-header" style="padding:0 0 12px">
+          <h2>Water box</h2>
+      </div>
+
+      <p class="mini-note">
+        Coordinates and box lengths are in Å. The molecule is translated to the
+        exact center of the box. Water molecules retain the geometry
+        supplied below.
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0">
+        <div>
+          <label for="wbSolute">Geometry (XYZ)</label>
+          <textarea id="wbSolute" spellcheck="false"
+                    style="width:100%;height:120px;box-sizing:border-box;font-family:monospace">
+    4
+    HCCI
+    H   0.000000  0.000000 -1.060000
+    C   0.000000  0.000000  0.000000
+    C   0.000000  0.000000  1.200000
+    I   0.000000  0.000000  3.250000</textarea>
+            <label for="wbSoluteFile" class="file-label"
+                   style="display:inline-block;margin-top:6px">Open HCCI XYZ</label>
+            <input id="wbSoluteFile" type="file" accept=".xyz,.txt" class="hidden">
+        </div>
+
+        <div>
+          <label for="wbWater">Water geometry (XYZ)</label>
+          <textarea id="wbWater" spellcheck="false"
+                    style="width:100%;height:120px;box-sizing:border-box;font-family:monospace">
+    3
+    H2O
+    O   0.000000  0.000000  0.000000
+    H   0.757200  0.000000  0.586500
+    H  -0.757200  0.000000  0.586500</textarea>
+          <label for="wbWaterFile" class="file-label"
+                 style="display:inline-block;margin-top:6px">Open water XYZ</label>
+          <input id="wbWaterFile" type="file" accept=".xyz,.txt" class="hidden">
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:end;flex-wrap:wrap;gap:12px">
+        <label>Box X (Å)
+          <input id="wbX" type="number" min="6" step="0.5" value="20" style="width:90px">
+        </label>
+        <label>Box Y (Å)
+          <input id="wbY" type="number" min="6" step="0.5" value="20" style="width:90px">
+        </label>
+        <label>Box Z (Å)
+          <input id="wbZ" type="number" min="6" step="0.5" value="20" style="width:90px">
+        </label>
+        <label>Water molecules
+          <input id="wbCount" type="number" min="0" max="800" step="1"
+               value="200" style="width:105px">
+        </label>
+
+        <button type="button" id="wbGenerate" class="primary">Generate water box</button>
+  
+        <div class="wb-download-row">
+            <button type="button" id="wbDownload" disabled>XYZ</button>
+            <button type="button" id="wbDownloadPDB" disabled>PDB</button>
+        </div>
+
+        <span id="wbStatus" role="status" class="mini-note"></span>
+      </div>
+
+    </div>
+  </section>
 
 
       <div class="card" id="tabsCard">
@@ -2639,140 +2728,58 @@ function getOrbitalSettings(){
 
   let cutoff =
 
-
-
     Number(document.getElementById("orbitalCutoff").value);
-
-
-
-
-
-
 
   let translucency =
 
 
-
     Number(document.getElementById("orbitalTranslucency").value);
-
-
-
-
-
-
 
   if(!Number.isFinite(cutoff)){
 
-
-
     cutoff = 0.03;
 
-
-
   }
-
-
-
-
-
-
 
   if(!Number.isFinite(translucency)){
 
-
-
     translucency = 0.35;
-
-
 
   }
 
-
-
-
-
-
-
   cutoff = Math.min(0.5, Math.max(0.0001, cutoff));
-
-
 
   translucency = Math.min(0.95, Math.max(0, translucency));
 
-
-
-
-
-
-
   const negative =
 
-
-
     jmolColor(
-
-
 
       document.getElementById("orbitalNegativeColor").value
 
-
-
     );
-
-
-
-
-
-
 
   const positive =
 
-
-
     jmolColor(
 
-
-
       document.getElementById("orbitalPositiveColor").value
-
-
-
+    
     );
-
-
-
-
-
-
 
   return {
 
-
-
     cutoff,
-
-
 
     translucency,
 
-
-
     negative,
-
-
 
     positive
 
-
-
   };
 
-
-
 }
-
-
-
 
 
 
@@ -2780,11 +2787,7 @@ function getOrbitalSettings(){
 function orbitalStyleScript(){
 
 
-
   const settings = getOrbitalSettings();
-
-
-
 
 
 
@@ -3493,7 +3496,7 @@ async function loadCalculatedOrbital(number){
       if(token===importLoadToken)setOrbitalStatus(`Calculating orbital ${n}: ${Math.round(100*done/total)}%`);
     },()=>token===importLoadToken);
     if(token!==importLoadToken)return;
-    await handleCubeFile(new File([cube],`orbital_${String(n).padStart(2,"0")}.cube`,{type:"text/plain"}),false,true);
+    await handleCubeFile(new File([cube],`orbital_${String(n).padStart(2,"0")}.cube`,{type:"text/plain"}),true,true);
     markActiveOrbitalRow(n);
     setOrbitalStatus(`Orbital ${n} displayed from the selected Molden file.`);
     document.getElementById("animationFrame").value=n;
@@ -3926,7 +3929,7 @@ function normalizeXYZ(raw){
 
 
 
-  return `${atomLines.length}\nGenerated by PyBuilder\n${atomLines.join("\n")}`;
+  return `${atomLines.length}\nGenerated by BeeMol\n${atomLines.join("\n")}`;
 
 
 
@@ -4058,7 +4061,7 @@ function writeXYZAtoms(atoms){
 
 
 
-    `${atoms.length}\nGenerated by PyBuilder\n${lines.join("\n")}`;
+    `${atoms.length}\nGenerated by BeeMol\n${lines.join("\n")}`;
 
 
 
@@ -5189,7 +5192,7 @@ if(method2==="MP2"){
 
   const jobName = document.getElementById("jobName").value.trim() || "pyscf_job";
 
-  moldenExport = `\n\n# Open this file in PyBuilder's Orbitals tab\nmolden.from_scf(mf, '${jobName}_scf.molden')`;
+  moldenExport = `\n\n# Open this file in BeeMol's Orbitals tab\nmolden.from_scf(mf, '${jobName}_scf.molden')`;
 
   if(["CASSCF", "CASCI", "NEVPT2"].includes(method2)){
 
@@ -5547,6 +5550,13 @@ function arrangeOrbitalWorkspace(isMolecule){
   }
 }
 function switchViewerMode(mode){
+
+  document.getElementById("waterBoxWorkspace").classList.add("hidden");
+  document.querySelector("main.container").classList.remove("waterbox-active");
+  document.getElementById("viewerStack").classList.remove("hidden");
+  document.getElementById("wbViewer").classList.add("hidden");
+  document.getElementById("wbOpen").classList.remove("active");
+  document.getElementById("orientationControls").style.display = "flex";
 
 
 
@@ -5962,24 +5972,6 @@ document.getElementById("downloadOrbitalCube").onclick=()=>{
   setTimeout(()=>URL.revokeObjectURL(url),60000);
 };
 
-document.getElementById("cubeFileInput").addEventListener("change", async e=>{
-  embeddedActive=false;
-
-  const files=Array.from(e.target.files); e.target.value="";
-
-  for(const file of files){
-
-    const match=file.name.match(/orbital[_-]?(\d+)/i);
-
-    if(match) cubeFiles.set(Number(match[1]),file);
-
-  }
-
-  if(files.length) await handleCubeFile(files[0]);
-
-});
-
-
 
 let animationRunning=false;
 let animationRecorder=null;
@@ -6076,24 +6068,6 @@ document.getElementById("animationFrame").onchange=e=>{
   document.getElementById("orbitalNumber").value=e.target.value;
   loadCalculatedOrbital(e.target.value);
 };
-
-document.getElementById("moldenFileInput").addEventListener("change", async e=>{
-
-
-
-  const file = e.target.files[0];
-
-
-
-  e.target.value = "";
-
-
-
-  if(file) await handleMoldenFile(file);
-
-
-
-});
 
 
 
@@ -6354,54 +6328,42 @@ document.getElementById("styleBtn").onclick = ()=>{
 
 }
 
+document.getElementById("orbitalFileInput").addEventListener("change", async e => {
+  const files = Array.from(e.target.files);
+  e.target.value = "";
+  if (!files.length) return;
 
+  const cubes = files.filter(file => /\.cub(e)?$/i.test(file.name));
 
+  if (cubes.length && cubes.length !== files.length) {
+    setOrbitalStatus("Choose CUBE files separately from XYZ or Molden files.", true);
+    return;
+  }
 
+  if (!cubes.length) {
+    const file = files[0];
+    const isXYZ = /\.xyz$/i.test(file.name) ||
+      (/\.txt$/i.test(file.name) &&
+       /^\s*\d+\s*$/.test((await file.text()).split(/\r?\n/, 1)[0]));
 
+    if (isXYZ) {
+      switchViewerMode("molecule");
+      selectedBondAtoms = [];
+      document.getElementById("xyzInput").value = await file.text();
+      loadMolecule();
+    } else {
+      await handleMoldenFile(file);
+    }
+    return;
+  }
 
-
-
-
-
-
-
-
-
-
-document.getElementById("xyzFile").addEventListener("change", async e=>{
-
-
-
-  const file = e.target.files[0];
-
-
-
-  if(!file) return;
-
-
-
-  switchViewerMode("molecule");
-
-
-
-  selectedBondAtoms = [];
-
-
-
-  document.getElementById("xyzInput").value = await file.text();
-
-
-
-  loadMolecule();
-
-
-
+  embeddedActive = false;
+  for (const file of cubes) {
+    const match = file.name.match(/orbital[_-]?(\d+)/i);
+    if (match) cubeFiles.set(Number(match[1]), file);
+  }
+  await handleCubeFile(cubes[0]);
 });
-
-
-
-
-
 
 
 document.getElementById("copyCode").onclick = async ()=>{
@@ -6488,6 +6450,448 @@ window.addEventListener("load", ()=>{
 
 });
 
+// Water box viewer. Does not change the PySCF input coordinates.
+let waterBoxViewer = null;
+let waterBoxXYZ = null;
+
+const wb = id => document.getElementById(id);
+
+function wbParseXYZ(input, label) {
+  const lines = input.trim().split(/\r?\n/);
+  let rows = lines;
+
+  if (/^\d+$/.test((lines[0] || "").trim())) {
+    const count = Number(lines[0].trim());
+    rows = lines.slice(2).filter(line => line.trim());
+
+    if (rows.length !== count) {
+      throw Error(`${label}: expected ${count} atoms, found ${rows.length}.`);
+    }
+  } else {
+    rows = lines.filter(line => line.trim());
+  }
+
+  if (!rows.length) {
+    throw Error(`${label}: add atom coordinates.`);
+  }
+
+  return rows.map((row, i) => {
+    const fields = row.trim().split(/\s+/);
+    const elem = fields[0].charAt(0).toUpperCase()
+      + fields[0].slice(1).toLowerCase();
+    const position = fields.slice(1, 4).map(Number);
+
+    if (
+      !/^[A-Z][a-z]?$/.test(elem) ||
+      fields.length < 4 ||
+      position.some(n => !Number.isFinite(n))
+    ) {
+      throw Error(`${label}: invalid atom on line ${i + 1}.`);
+    }
+
+    return {elem, p: position};
+  });
+}
+
+function wbText(atoms, title) {
+  return `${atoms.length}\n${title}\n`
+    + atoms.map(atom =>
+        `${atom.elem} ${atom.p.map(v => v.toFixed(6)).join(" ")}`
+      ).join("\n")
+    + "\n";
+}
+
+function wbRandomRotation() {
+  const a = Math.random() * 2 * Math.PI;
+  const b = Math.random() * 2 * Math.PI;
+  const c = Math.random();
+
+  const q = [
+    Math.sqrt(1 - c) * Math.sin(a),
+    Math.sqrt(1 - c) * Math.cos(a),
+    Math.sqrt(c) * Math.sin(b),
+    Math.sqrt(c) * Math.cos(b)
+  ];
+
+  const [x, y, z, w] = q;
+
+  return p => [
+    (1 - 2 * (y*y + z*z)) * p[0]
+      + 2 * (x*y - z*w) * p[1]
+      + 2 * (x*z + y*w) * p[2],
+
+    2 * (x*y + z*w) * p[0]
+      + (1 - 2 * (x*x + z*z)) * p[1]
+      + 2 * (y*z - x*w) * p[2],
+
+    2 * (x*z - y*w) * p[0]
+      + 2 * (y*z + x*w) * p[1]
+      + (1 - 2 * (x*x + y*y)) * p[2]
+  ];
+}
+
+function wbEdges(lengths) {
+  for (let axis = 0; axis < 3; axis++) {
+    for (let u = 0; u < 2; u++) {
+      for (let v = 0; v < 2; v++) {
+        const start = [0, 0, 0];
+        const end = [0, 0, 0];
+        const other = [0, 1, 2].filter(i => i !== axis);
+
+        start[other[0]] = end[other[0]] = u * lengths[other[0]];
+        start[other[1]] = end[other[1]] = v * lengths[other[1]];
+        end[axis] = lengths[axis];
+
+        waterBoxViewer.addLine({
+          start: {x:start[0], y:start[1], z:start[2]},
+          end: {x:end[0], y:end[1], z:end[2]},
+          color: "#7890a8",
+          opacity: 0.8
+        });
+      }
+    }
+  }
+}
+
+function generateWaterBox() {
+  const status = wb("wbStatus");
+  waterBoxXYZ = null;
+  wb("wbDownload").disabled = true;
+  wb("wbDownloadPDB").disabled = true;
+  wb("wbDownloadPDB").disabled = false;
+
+  try {
+    const solute = wbParseXYZ(wb("wbSolute").value, "Molecule");
+    const water = wbParseXYZ(wb("wbWater").value, "Water");
+
+    if (
+      water.length !== 3 ||
+      water.filter(a => a.elem === "O").length !== 1 ||
+      water.filter(a => a.elem === "H").length !== 2
+    ) {
+      throw Error("Water must contain one O and two H atoms.");
+    }
+
+    const lengths = ["wbX", "wbY", "wbZ"]
+      .map(id => Number(wb(id).value));
+    const count = Number(wb("wbCount").value);
+
+    if (lengths.some(v => !Number.isFinite(v) || v < 6 || v > 150)) {
+      throw Error("Box lengths must be from 6 to 150 Å.");
+    }
+
+    if (!Number.isInteger(count) || count < 0 || count > 800) {
+      throw Error("Water count must be from 0 to 800.");
+    }
+
+    // Put the midpoint of HCCI's bounds at the center of the box.
+    const midpoint = [0, 1, 2].map(k =>
+      (
+        Math.min(...solute.map(a => a.p[k])) +
+        Math.max(...solute.map(a => a.p[k]))
+      ) / 2
+    );
+
+    const centered = solute.map(atom => ({
+      elem: atom.elem,
+      p: atom.p.map((value, k) =>
+        value - midpoint[k] + lengths[k] / 2
+      )
+    }));
+
+    if (
+      centered.some(atom =>
+        atom.p.some((value, k) =>
+          value < 1 || value > lengths[k] - 1
+        )
+      )
+    ) {
+      throw Error("HCCI does not fit inside this box with a 1 Å margin.");
+    }
+
+    // Keep the supplied water bond lengths and angle unchanged.
+    const oxygen = water.find(atom => atom.elem === "O").p;
+    const rigid = water.map(atom => ({
+      elem: atom.elem,
+      p: atom.p.map((value, k) => value - oxygen[k])
+    }));
+
+    const waters = [];
+    const oxygens = [];
+    let attempts = 0;
+
+    const distance2 = (p, q) =>
+      p.reduce((total, value, k) =>
+        total + (value - q[k]) ** 2, 0
+      );
+
+    while (
+      waters.length < count &&
+      attempts < Math.max(2000, count * 130)
+    ) {
+      attempts++;
+
+      const position = lengths.map(length =>
+        1.1 + Math.random() * (length - 2.2)
+      );
+
+      const rotate = wbRandomRotation();
+
+      const candidate = rigid.map(atom => ({
+        elem: atom.elem,
+        p: rotate(atom.p).map((value, k) =>
+          value + position[k]
+        )
+      }));
+
+      if (
+        candidate.some(atom =>
+          atom.p.some((value, k) =>
+            value < 0.4 || value > lengths[k] - 0.4
+          )
+        )
+      ) continue;
+
+      if (
+        candidate.some(atom =>
+          centered.some(coreAtom =>
+            distance2(atom.p, coreAtom.p) <
+              (atom.elem === "O" && coreAtom.elem !== "H"
+                ? 2.75 : 1.9) ** 2
+          )
+        )
+      ) continue;
+
+      if (
+        oxygens.some(p =>
+          distance2(p, position) < 2.65 ** 2
+        )
+      ) continue;
+
+      if (
+        waters.some(molecule =>
+          candidate.some(atom =>
+            molecule.some(other => {
+              const minimum =
+                atom.elem === "O" && other.elem === "O" ? 2.65 :
+                atom.elem === "H" && other.elem === "H" ? 1.45 :
+                1.80;
+
+              return distance2(atom.p, other.p) < minimum ** 2;
+            })
+          )
+        )
+      ) continue;
+
+      waters.push(candidate);
+      oxygens.push(position);
+    }
+
+    const allAtoms = centered.concat(waters.flat());
+
+    waterBoxXYZ = wbText(
+      allAtoms,
+      `HCCI + ${waters.length} H2O; box ${lengths.join(" x ")} Angstrom; HCCI centered`
+    );
+
+    wb("xyzInput").value = waterBoxXYZ;
+
+    if (!waterBoxViewer) {
+      waterBoxViewer = $3Dmol.createViewer("wbViewer", {
+        backgroundColor: "#f8fbff",
+        disableFog: true
+      });
+    }
+
+    waterBoxViewer.clear();
+
+    const core = waterBoxViewer.addModel(
+      wbText(centered, "HCCI"), "xyz"
+    );
+
+    core.setStyle({}, {
+      stick: {radius:0.16},
+      sphere: {scale:0.33}
+    });
+
+    if (waters.length) {
+      const shell = waterBoxViewer.addModel(
+        wbText(waters.flat(), "Water"), "xyz"
+      );
+
+      shell.setStyle({}, {
+        stick: {radius:0.075},
+        sphere: {scale:0.15}
+      });
+    }
+
+    wbEdges(lengths);
+    waterBoxViewer.zoomTo();
+    waterBoxViewer.resize();
+    waterBoxViewer.render();
+
+    wb("wbDownload").disabled = false;
+
+
+  } catch (error) {
+    status.textContent = error.message;
+  }
+}
+
+wb("wbOpen").onclick = () => {
+  switchViewerMode("molecule");
+
+  if (waterBoxXYZ) wb("xyzInput").value = waterBoxXYZ;
+
+  wb("wbOpen").classList.add("active");
+  wb("modeMoleculeBtn").classList.remove("active");
+
+  document.querySelector("main.container")
+    .classList.add("waterbox-active");
+
+  wb("viewer").classList.add("hidden");
+  wb("orbitalViewer").classList.add("hidden");
+  wb("wbViewer").classList.remove("hidden");
+  wb("waterBoxWorkspace").classList.remove("hidden");
+  wb("moleculeControls").classList.add("hidden");
+
+  wb("orientationControls").style.display = "none";
+  wb("tabsCard").classList.add("hidden");
+  wb("codeCard").classList.add("hidden");
+
+  if (!waterBoxXYZ) {
+    generateWaterBox();
+  } else if (waterBoxViewer) {
+    waterBoxViewer.resize();
+    waterBoxViewer.render();
+  }
+};
+
+wb("wbOpen").onkeydown = event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    wb("wbOpen").click();
+  }
+};
+
+wb("wbGenerate").onclick = generateWaterBox;
+
+for (const [inputId, textareaId] of [
+  ["wbSoluteFile", "wbSolute"],
+  ["wbWaterFile", "wbWater"]
+]) {
+  wb(inputId).onchange = async event => {
+    const file = event.target.files[0];
+    if (file) wb(textareaId).value = await file.text();
+    event.target.value = "";
+  };
+}
+
+function wbPDBFromXYZ(xyz) {
+  const lines = xyz.trim().split(/\r?\n/);
+  const match = (lines[1] || "").match(
+    /box\s+([\d.]+)\s*x\s*([\d.]+)\s*x\s*([\d.]+)\s+Angstrom/i
+  );
+
+  if (!match) {
+    throw Error("XYZ comment does not contain box lengths.");
+  }
+
+  const box = match.slice(1).map(Number);
+  const atoms = wbParseXYZ(xyz, "Water box");
+
+  if (atoms.length < 4 || (atoms.length - 4) % 3 !== 0) {
+    throw Error("Expected HCCI followed by complete water molecules.");
+  }
+
+  const output = [
+    "CRYST1"
+      + box.map(v => v.toFixed(3).padStart(9)).join("")
+      + [90, 90, 90].map(v => v.toFixed(2).padStart(7)).join("")
+      + " P 1           1",
+    "REMARK   1 HCCI WATER BOX GENERATED BY BeeMol"
+  ];
+
+  for (let i = 0; i < atoms.length; i++) {
+    const atom = atoms[i];
+    const atomName = i < 4
+      ? ["H1", "C1", "C2", "I1"][i]
+      : ["O", "H1", "H2"][(i - 4) % 3];
+    const residue = i < 4 ? "HCI" : "HOH";
+    const residueNumber = i < 4
+      ? 1
+      : Math.floor((i - 4) / 3) + 2;
+
+    output.push(
+      "HETATM"
+      + String(i + 1).padStart(5)
+      + " "
+      + atomName.padEnd(4)
+      + " "
+      + residue
+      + " A"
+      + String(residueNumber).padStart(4)
+      + "    "
+      + atom.p.map(v => v.toFixed(3).padStart(8)).join("")
+      + "  1.00  0.00          "
+      + atom.elem.padStart(2)
+    );
+  }
+
+  const conect = (atom, ...neighbors) =>
+    "CONECT"
+    + [atom, ...neighbors]
+        .map(number => String(number).padStart(5))
+        .join("");
+
+  output.push(
+    conect(1, 2),
+    conect(2, 3, 3, 3),
+    conect(3, 4)
+  );
+
+  for (let i = 5; i <= atoms.length; i += 3) {
+    output.push(conect(i, i + 1, i + 2));
+  }
+
+  output.push("END");
+  return output.join("\n") + "\n";
+}
+
+wb("wbDownloadPDB").onclick = () => {
+  if (!waterBoxXYZ) return;
+
+  try {
+    const pdb = wbPDBFromXYZ(waterBoxXYZ);
+    const url = URL.createObjectURL(
+      new Blob([pdb], {type: "chemical/x-pdb"})
+    );
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "HCCI_water_box.pdb";
+    link.click();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (error) {
+    wb("wbStatus").textContent = error.message;
+  }
+};
+
+wb("wbDownload").onclick = () => {
+  if (!waterBoxXYZ) return;
+
+  const url = URL.createObjectURL(
+    new Blob([waterBoxXYZ], {type:"chemical/x-xyz"})
+  );
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "HCCI_water_box.xyz";
+  link.click();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
 
 
 </script>
